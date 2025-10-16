@@ -50,20 +50,7 @@ with tab1:
 
 with tab2:
     st.header("📊 우리 반 MBTI 분포와 특징 파악")
-    if os.path.exists(DATA_PATH):
-        df = pd.read_csv(DATA_PATH)
-        # 이름 컬럼이 있다면 익명 처리
-        st.write("※ 이름은 저장되지만 시각화에는 사용되지 않습니다.")
-        mbti_counts = df['MBTI'].value_counts().reindex(mbti_types, fill_value=0)
-        st.bar_chart(mbti_counts)
-        # MBTI별 휴식법 리스트 추가로 보여주기
-        show_tips = st.checkbox("MBTI별 추천 휴식법 전체 보기")
-        if show_tips:
-            for mbti, tip in mbti_recommendations.items():
-                st.write(f"**{mbti}**: {tip}")
-    else:
-        st.warning("아직 제출된 데이터가 없습니다. 학생들이 먼저 MBTI를 선택해 주세요.")
-
+    
     # ① 선생님만 볼 수 있도록 비밀번호 작성 (예: 'teacherPW'라고 가정)
     password = st.text_input("교사용 비밀번호를 입력하세요", type="password")
     if password == "hamsung01":
