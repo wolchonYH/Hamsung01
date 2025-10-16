@@ -30,7 +30,7 @@ mbti_types = list(mbti_recommendations.keys())
 DATA_PATH = "mbti_data.csv"
 
 # 탭 분리
-tab1, tab2 = st.tabs(["학생용 - 휴식 추천", "교사용 - MBTI 분포 시각화"])
+tab1, tab2 = st.tabs(["학생용 - 휴식 추천", "우리반의 MBTI 분포 시각화"])
 
 with tab1:
     st.header("☺️ 내 MBTI로 추천받는 휴식 방법")
