@@ -63,3 +63,25 @@ with tab2:
                 st.write(f"**{mbti}**: {tip}")
     else:
         st.warning("아직 제출된 데이터가 없습니다. 학생들이 먼저 MBTI를 선택해 주세요.")
+
+    # ① 선생님만 볼 수 있도록 비밀번호 작성 (예: 'teacherPW'라고 가정)
+    password = st.text_input("교사용 비밀번호를 입력하세요", type="password")
+    if password == "hamsung01":
+        if os.path.exists(DATA_PATH):
+            df = pd.read_csv(DATA_PATH)
+            mbti_counts = df['MBTI'].value_counts().reindex(mbti_types, fill_value=0)
+            st.bar_chart(mbti_counts)
+            st.subheader("학생별 제출 내역")
+            st.dataframe(df)  # 학생들의 MBTI 제출 내역 전체(이름, MBTI)를 표로 표시
+
+            show_tips = st.checkbox("MBTI별 추천 휴식법 전체 보기")
+            if show_tips:
+                for mbti, tip in mbti_recommendations.items():
+                    st.write(f"**{mbti}**: {tip}")
+        else:
+            st.warning("아직 제출된 데이터가 없습니다. 학생들이 먼저 MBTI를 선택해 주세요.")
+    elif password != "":
+        st.error("비밀번호가 틀렸습니다.")
+    else:
+        st.info("교사용 데이터 확인은 비밀번호 입력이 필요합니다.")
+
